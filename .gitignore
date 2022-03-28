@@ -1,6 +1,7 @@
 .gradle
 .idea
 build
+.secret
 
 # Compiled class file
 *.class

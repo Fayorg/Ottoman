@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'me.fayorg'
 version '1.0-SNAPSHOT'
 
 repositories {
