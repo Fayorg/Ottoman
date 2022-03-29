@@ -6,8 +6,7 @@ import net.dv8tion.jda.api.entities.User;
 
 public abstract class AbstractCommand {
 
-    private CommandCategory category = CommandCategory.UNKNOWN;
-    private CommandEnabled status = CommandEnabled.ENABLED;
+    private final CommandEnabled status = CommandEnabled.ENABLED;
 
     public AbstractCommand() {
 
@@ -27,10 +26,6 @@ public abstract class AbstractCommand {
 
     public abstract String[] getAliases();
 
-    public void setCommandCategory(CommandCategory newCategory) {
-        category = newCategory;
-    }
-
     /**
      * This defines if the command is enabled, disabled or admin-only. {@link CommandEnabled}
      */
@@ -39,7 +34,7 @@ public abstract class AbstractCommand {
     }
 
     /**
-     * This will define if the command is hidden from non-admin (bot admin, not guild admin). (NOT IMPLEMENTED)
+     * This will define if the command is hidden from non-admin (bot admin, not guild admin).
      */
     public boolean isListed() {
         return true;
@@ -47,9 +42,9 @@ public abstract class AbstractCommand {
 
     /**
      * Function executed everytime someone run this command.
-     * @param message
-     * @param channel
-     * @param author
+     * @param message The discord message as {@link Message}
+     * @param channel The channel the command was executed as {@link TextChannel}
+     * @param author The author of the message as an {@link User}
      */
     public abstract void execute(Message message, TextChannel channel, User author);
 
