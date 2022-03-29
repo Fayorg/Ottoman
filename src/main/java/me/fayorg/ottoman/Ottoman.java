@@ -11,6 +11,8 @@ public class Ottoman {
 
    public static JDA jda;
 
+   public static final String PREFIX = "?";
+
     public static void main(String[] args) {
 
         try {
