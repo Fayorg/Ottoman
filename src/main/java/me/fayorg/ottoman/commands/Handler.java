@@ -38,6 +38,8 @@ public class Handler {
     public void loadCommands() {
         commands.add(new CommandPing());
         commands.add(new CommandPI());
+        commands.add(new CommandRandom());
+        commands.add(new CommandGithub());
     }
 
     private boolean isCommand(@NotNull Message message) {
@@ -49,5 +51,13 @@ public class Handler {
         // TODO Implement the check if the user is an Admin (Need SQL integration first).
         return command.isEnabled().equals(CommandEnabled.ENABLED);
     }
+
+    /*
+
+        COMMAND IDEAS :
+
+            - Command that generate multiple math symbols ready to be copy-past
+
+     */
 
 }
