@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 
 public class Handler {
 
@@ -22,12 +20,13 @@ public class Handler {
         if(!isCommand(message)) return;
         String requestedCommand = message.getContentRaw().trim().split(" ")[0].replace(Ottoman.PREFIX, "").toLowerCase();
         for(AbstractCommand command : commands) {
-            if(!requestedCommand.equalsIgnoreCase(command.getCommand()) && Arrays.stream(command.getAliases()).noneMatch(requestedCommand::equalsIgnoreCase)) return;
+            if(!requestedCommand.equalsIgnoreCase(command.getCommand()) && Arrays.stream(command.getAliases()).noneMatch(requestedCommand::equalsIgnoreCase)) continue;
             if(!checkCommandAvailability(command)) {
                 message.reply("This command is currently unavailable!").queue();
                 return;
             }
             command.execute(message, textChannel, author);
+            return;
             //System.out.println("[i] Process duration: " + (System.currentTimeMillis() - start) + " ms");
         }
     }
@@ -38,6 +37,7 @@ public class Handler {
 
     public void loadCommands() {
         commands.add(new CommandPing());
+        commands.add(new CommandPI());
     }
 
     private boolean isCommand(@NotNull Message message) {

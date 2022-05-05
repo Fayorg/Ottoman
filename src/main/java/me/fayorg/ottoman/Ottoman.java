@@ -26,12 +26,6 @@ public class Ottoman {
 
             // ALL OTHER STUFF (NON-CRITICAL) (POSTINIT)
             database = new Database(args[1], args[2]);
-            if(database.isConnected()) {
-                System.out.println("[i] Database connection established!");
-            } else {
-                System.out.println("[i] Database connection not established!");
-            }
-
 
         } catch (LoginException e) {
             e.printStackTrace();

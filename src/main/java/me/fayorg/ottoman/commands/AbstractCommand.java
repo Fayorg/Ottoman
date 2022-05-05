@@ -1,8 +1,12 @@
 package me.fayorg.ottoman.commands;
 
+import me.fayorg.ottoman.Ottoman;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public abstract class AbstractCommand {
 
@@ -47,6 +51,17 @@ public abstract class AbstractCommand {
      * @param author The author of the message as an {@link User}
      */
     public abstract void execute(Message message, TextChannel channel, User author);
+
+    protected boolean isCommandEnabledInDatabase() {
+        try {
+            ResultSet res = Ottoman.database.query("SELECT * FROM Commands WHERE Name='" + getCommand() + "'");
+            res.first();
+            return res.getBoolean(2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
 

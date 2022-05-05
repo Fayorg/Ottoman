@@ -5,9 +5,6 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class CommandPing extends AbstractCommand {
     @Override
     public String getDescription() {
@@ -21,14 +18,7 @@ public class CommandPing extends AbstractCommand {
 
     @Override
     public CommandEnabled isEnabled() {
-        try {
-            ResultSet res = Ottoman.database.query("SELECT * FROM Commands WHERE Name='" + getCommand() + "'");
-            res.first();
-            return (res.getBoolean(2)) ? CommandEnabled.ENABLED : CommandEnabled.DISABLED;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return CommandEnabled.DISABLED;
+        return isCommandEnabledInDatabase() ? CommandEnabled.ENABLED : CommandEnabled.DISABLED;
     }
 
     @Override
